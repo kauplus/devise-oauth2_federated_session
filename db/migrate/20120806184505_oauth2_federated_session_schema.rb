@@ -20,15 +20,19 @@ class Oauth2FederatedSessionSchema < ActiveRecord::Migration
     #
     # Authorization codes
     #
+    
+    authorization_codes_table = prefix + 'authorization_codes'
         
-    add_column (prefix + 'authorization_codes'), :account_sid, :string
+    add_column authorization_codes_table, :account_sid, :string
     
     #
     # Clients
     #
     
-    add_column (prefix + 'clients'), :uses_account_sid, :boolean, :default => false
-    add_column (prefix + 'clients'), :session_expired_notification_uri, :string
+    clients_table = prefix + 'clients'
+    
+    add_column clients_table, :uses_account_sid, :boolean, :default => false
+    add_column clients_table, :session_expired_notification_uri, :string
     
   end
   

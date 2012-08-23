@@ -5,8 +5,8 @@ Gem::Specification.new do |s|
   
   s.name        = 'devise-oauth2_federated_session'
   s.version     = Devise::Oauth2FederatedSession::VERSION
-  s.author      = 'Kauplus Social Commerce'
-  s.email       = ['suporte@kauplus.com.br']
+  s.author      = 'Kauplus'
+  s.email       = ['dev@kauplus.com.br']
   s.homepage    = "https://github.com/kauplus/devise-oauth2_federated_session"
   s.summary     = %q{Federated session management engine for Devise-enabled Rails applications}
   s.description = %q{Rails 3 engine built upon Devise and Devise-OAuth2Providable to add federated

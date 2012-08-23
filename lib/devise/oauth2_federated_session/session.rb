@@ -6,7 +6,7 @@ module Devise
     
       def self.cleanup(tokens)
         
-        # Notify all clients
+        # Notify all clients that their tokens have been expired
         Devise::Oauth2FederatedSession.client_notifier.notify_expired_session(tokens)
       
         # Remove tokens from the cache

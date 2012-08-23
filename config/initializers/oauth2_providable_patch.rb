@@ -1,12 +1,12 @@
 #
-# Changes required in the devise_oauth2_providable gem
+# This patch applies changes in the devise_oauth2_providable gem
 # that are specific to this gem. Because these changes are
-# not bug fixes or improvements of any kind, it doesn't make
-# sense to make a pull request.
+# not bug fixes or improvements of any kind to the original gem,
+# making a pull request wasn't an option.
 #
 # Forking the project would mean not being able to specify
 # devise_oauth2_providable as a dependency in the gemspec, which
-# is not very good.
+# in our view wasn't a good way to go.
 #
 
 module Devise
