@@ -7,8 +7,8 @@ class Devise::Oauth2FederatedSession::ClientNotifier
   end
   
   #
-  # Sends a POST request to all clients that were using tokens that
-  # have been expired and have notifications enabled.
+  # Sends a POST request to all clients subscribed to receive
+  # notifications when a token in use is expired.
   #
   def notify_expired_session(tokens)
     if @enabled

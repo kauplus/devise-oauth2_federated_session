@@ -32,6 +32,12 @@ module Devise
       
       protected
       
+      #
+      # This method authorizes the client.
+      #
+      # allow_approval: false by default, but can be anything
+      # that translates to true/false in Ruby (e.g. a symbol).
+      #
       def authorize_endpoint(allow_approval = false)
         
         Rack::OAuth2::Server::Authorize.new do |req, res|

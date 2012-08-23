@@ -1,7 +1,7 @@
 devise-oauth2\_federated\_session
 ===============================
 
-The devise-oauth2\_federated\_session gem aims to provide federated session management functionality to a group of applications composed of one OAuth2 provider and one or more trusted applications (which will be OAuth2 clients) that are not hosted in the same domain as the provider application, and therefore cannot use traditional session management solutions such as shared cookies.
+The devise-oauth2\_federated\_session gem aims to provide federated session management functionality to a group of applications composed of one Rails OAuth2 provider and one or more trusted applications (which will be OAuth2 clients) that are not hosted in the same domain as the provider application, and therefore cannot use traditional session management solutions such as shared cookies.
 
 It is built upon the widely used [Devise](https://github.com/plataformatec/devise) authentication gem and the [devise\_oauth2\_providable](https://github.com/socialcast/devise_oauth2_providable) gem, which is an OAuth2 module for Devise.
 
@@ -32,13 +32,12 @@ Include the gem in your Gemfile:
 
     gem 'devise-oauth2_federated_session', '0.0.1'
 
-### Configuration
+### Setup
 
-Configure devise. A basic configuration is shown below; for more information, check Devise's [Github page](https://github.com/plataformatec/devise).
+Setup devise. A basic setup is shown below; for more information, check [Devise's Github page](https://github.com/plataformatec/devise).
 
     rails generate devise:install
     rails generate devise User
-
     rails generate devise:views
     rake db:migrate
 
@@ -54,7 +53,7 @@ Install and run required migrations:
 
     # From Rails console, or in seeds.rb
     client = Devise::Oauth2Providable::Client.create(
-      :name => 'Sinatra Client',
+      :name => 'My Client',
       :redirect_uri => 'http://localhost:9393/oauth/callback',
       :session_expiration_notification_uri => 'http://localhost:9393/session_expired_notification',
       :website => 'http://localhost:9393/'
@@ -75,7 +74,7 @@ Simply add it to your Gemfile and run the required migrations (check the author'
 
 ##### Disabling client notifications
 
-    # config/application.rb or the specify environment files (config/environments/*.rb)
+    # config/application.rb or the specific environment file (config/environments/*.rb)
     config.devise_oauth2_federated_session.use_client_notification = false
     
 #### Using whenever to expire old sessions
@@ -83,7 +82,7 @@ Simply add it to your Gemfile and run the required migrations (check the author'
 `whenever` is an awesome gem that translates scheduling commands written in Ruby to unix's crontab format.
 For more information, check their [Github page](https://github.com/javan/whenever).
 
-Below is shown an example of a task that can be placed in `schedule.rb`. This task will expire all sessions older than `config.devise_oauth2_federated_session.expire_sessions_in` (default is 1 day).
+Below is shown an example of a task that can be placed in `schedule.rb`. This task will run once per day, expiring all sessions older than `config.devise_oauth2_federated_session.expire_sessions_in` (default is 1 day).
 
     every 1.day, :at => '0:00 am' do
       rake 'devise_oauth2_federated_session:sessions:expire'
@@ -96,4 +95,4 @@ Don't forget to update the crontab:
 ### Example
 
 We recommend you check out the <a href="https://github.com/kauplus/federated-session-example">example applications repository</a>, which contains a client and a provider. 
-This example was adapted from @aganov's [example](https://github.com/aganov/devise-oauth2-provider-client).
+This example was adapted from [@aganov's example](https://github.com/aganov/devise-oauth2-provider-client).

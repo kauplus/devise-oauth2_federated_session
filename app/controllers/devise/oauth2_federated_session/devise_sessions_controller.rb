@@ -8,7 +8,7 @@ module Devise
       
       #
       # Override default sign out behaviour, so that clients can log users out 
-      # and have them be redirected back to the some client page.
+      # and have them be redirected back to some client page.
       #
       def after_sign_out_path_for(resource_name)
         client = Oauth2FederatedSession::Client.find_by_identifier(params[:client_id])
