@@ -39,5 +39,9 @@ Devise::Strategies::Oauth2GrantTypeStrategy.class_eval do
   end
 end
 
+Devise::Oauth2Providable::AuthorizationCode.class_eval do
+  attr_accessible :account_sid
+end
+
 # Client subclass
 require 'devise/oauth2_federated_session/client'
