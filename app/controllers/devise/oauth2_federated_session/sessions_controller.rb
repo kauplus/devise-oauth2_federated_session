@@ -3,7 +3,7 @@ module Devise
   module Oauth2FederatedSession
     
     #
-    # Deals with issuing and validating access tokens.
+    # The SessionsController deals with issuing and validating access tokens.
     #
     class SessionsController < Devise::Oauth2Providable::TokensController
       
@@ -20,7 +20,7 @@ module Devise
       # Creates a new access token given an authorization code.
       # The token creation is done by the superclass and then this method
       # sets relevant information that will enable the access token to be
-      # used for session management.
+      # used for federated session management.
       #
       def create
         super
@@ -46,6 +46,9 @@ module Devise
         session_alive = Rails.cache.read("#{cache_prefix}_#{token}")
         
         unless session_alive
+          # if the session is not alive according to the cache,
+          # its expiration status is checked in database and the
+          # cache expiration status is updated.
           
           access_token = Oauth2Providable::AccessToken.find_by_token(token)
           
@@ -64,7 +67,7 @@ module Devise
       # GET /:mounted_path/sessions/recognize_user
       #
       # This action can be used by clients when the client session is first created
-      # and the it wishes to know if the user is already logged in, so that it
+      # and then the client wishes to know if the user is already logged in, so that it
       # can also log them in its own application.
       #
       # Two cases are supported:
