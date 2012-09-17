@@ -52,10 +52,10 @@ Install and run required migrations:
 #### Registering a new client
 
     # From Rails console, or in seeds.rb
-    client = Devise::Oauth2Providable::Client.create(
+    client = Devise::Oauth2FederatedSession::Client.create(
       :name => 'My Client',
       :redirect_uri => 'http://localhost:9393/oauth/callback',
-      :session_expiration_notification_uri => 'http://localhost:9393/session_expired_notification',
+      :session_expired_notification_uri => 'http://localhost:9393/session_expired_notification',
       :website => 'http://localhost:9393/'
     )
     
