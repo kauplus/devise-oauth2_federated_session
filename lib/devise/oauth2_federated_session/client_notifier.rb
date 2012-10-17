@@ -12,7 +12,7 @@ class Devise::Oauth2FederatedSession::ClientNotifier
   #
   def notify_expired_session(tokens)
     if @enabled
-      tokens.map {|t| [t.client.session_expired_notification_uri, token: t.token]}.each do |args|
+      tokens.map {|t| [t.client.session_expired_notification_uri, token: t.token, client_sid: t.client_sid]}.each do |args|
         if args.first.present?
           @delay ? RestClient.delay.post(*args) : RestClient.post(*args)
         end

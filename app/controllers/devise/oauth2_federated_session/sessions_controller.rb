@@ -35,6 +35,7 @@ module Devise
         
         authorization_code = Oauth2Providable::AuthorizationCode.find_by_token(params[:code])
         @access_token.account_sid = authorization_code.account_sid
+        @access_token.client_sid = params[:client_sid]
         @access_token.save
       end
       

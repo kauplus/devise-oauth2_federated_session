@@ -11,6 +11,7 @@ class Oauth2FederatedSessionSchema < ActiveRecord::Migration
     access_tokens_table = prefix + 'access_tokens'
     
     add_column access_tokens_table, :account_sid, :string
+    add_column access_tokens_table, :client_sid,  :string
     add_column access_tokens_table, :session_expired_at, :datetime
     
     change_table access_tokens_table do |t|
